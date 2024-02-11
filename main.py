@@ -94,11 +94,17 @@ if submit_button:
         time.sleep(1)
 
         # Query the API
-        output = query({"inputs": text, })
+        output = query(
+            {
+                "inputs": text, 
+                "parameters": {"truncation": "only_first"},
+            }
+        )
 
        # Display the results
-        summary = output[0]['summary_text'].replace('<n>', " ") 
-
+        summary = output[0]["generated_text"].replace("<n>", " ")
+        
+        
         st.divider()
         st.subheader("Summary")
         st.write(f"Your article: **{title}**")
